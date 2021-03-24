@@ -1,4 +1,4 @@
-module go-utils
+module github.com/nmpatzios/go-utils
 
 go 1.14
 
