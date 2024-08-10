@@ -1,4 +1,4 @@
-package timologisiuser
+package invoiceusers
 
 import "time"
 
