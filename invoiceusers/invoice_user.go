@@ -280,3 +280,22 @@ type EisprakseisTelousType struct {
 	Type  int64   `json:"type"`
 	Value float64 `json:"value"`
 }
+
+func (u *User) ToPublicUser(users []User) map[string]interface{} {
+	allUsers := make([]string, 0)
+	for _, user := range users {
+		allUsers = append(allUsers, user.Eponimia)
+	}
+	return map[string]interface{}{
+		"aade_user_id":       u.AADEMyData.AADEUserID,
+		"aade_password":      u.AADEMyData.SubscriptionKey,
+		"id":                 u.ID,
+		"email":              u.Email,
+		"afm":                u.Afm,
+		"diakritikos_titlos": u.DiakritikosTitlos,
+		"drastiriotita":      u.Drastiriotita,
+		"doy":                u.Doy,
+		"eponimia":           u.Eponimia,
+		"created_users":      allUsers,
+	}
+}
