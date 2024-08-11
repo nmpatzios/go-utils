@@ -1,6 +1,11 @@
 package invoiceusers
 
-import "time"
+import (
+	"strings"
+	"time"
+
+	"github.com/nmpatzios/go-utils/resterrors"
+)
 
 type BranchStore struct {
 	ID                      string `json:"id"`
@@ -298,4 +303,28 @@ func (u *User) ToPublicUser(users []User) map[string]interface{} {
 		"eponimia":           u.Eponimia,
 		"created_users":      allUsers,
 	}
+}
+
+func (user *User) MydataRegisterAPIValidate() resterrors.RestErr {
+	user.Afm = strings.TrimSpace(user.Afm)
+	user.Email = strings.TrimSpace(strings.ToLower(user.Email))
+	user.Password = strings.TrimSpace(user.Password)
+
+	if user.Email == "" {
+		return resterrors.NewBadRequestError("invalid email address")
+	}
+	if user.Afm == "" {
+		return resterrors.NewBadRequestError("invalid afm")
+	}
+	if user.Password == "" {
+		return resterrors.NewBadRequestError("invalid password")
+	}
+	if user.AADEMyData.AADEUserID == "" {
+		return resterrors.NewBadRequestError("invalid aade_user_id")
+	}
+	if user.AADEMyData.SubscriptionKey == "" {
+		return resterrors.NewBadRequestError("invalid subscription_key")
+	}
+
+	return nil
 }
