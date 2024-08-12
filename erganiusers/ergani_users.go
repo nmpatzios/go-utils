@@ -104,3 +104,38 @@ type CreatedFrom struct {
 	Type        string    `json:"type"`
 	DateCreated time.Time `json:"date_created"`
 }
+type UserResponse struct {
+	ID                string    `json:"id"`
+	AAErgani          int       `json:"aa_ergani"`
+	Password          string    `json:"password"`
+	Email             string    `json:"email"`
+	MobileNumber      string    `json:"mobile_number"`
+	PhoneNumber       string    `json:"phone_number"`
+	Vat               string    `json:"vat"`
+	DiakritikosTitlos string    `json:"diakritikos_titlos"`
+	Drastiriotita     string    `json:"drastiriotita"`
+	Eponimia          string    `json:"eponimia"`
+	LastLogin         time.Time `json:"last_login"`
+	ValidUntil        time.Time `json:"valid_until"`
+	IsActive          bool      `json:"is_active"`
+	DateCreated       time.Time `json:"date_created"`
+	DateUpdated       time.Time `json:"date_updated"`
+}
+
+func (user *User) ToUserResponse() UserResponse {
+	return UserResponse{
+		ID:                user.ID,
+		Email:             user.Email,
+		MobileNumber:      user.MobileNumber,
+		PhoneNumber:       user.MobileNumber,
+		Vat:               user.Vat,
+		DiakritikosTitlos: user.DiakritikosTitlos,
+		Drastiriotita:     user.Drastiriotita,
+		Eponimia:          user.Eponimia,
+		LastLogin:         user.LastLogin,
+		ValidUntil:        user.ValidUntil,
+		IsActive:          user.IsActive,
+		DateCreated:       user.DateCreated,
+		DateUpdated:       user.DateUpdated,
+	}
+}
