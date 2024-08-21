@@ -157,6 +157,13 @@ type User struct {
 	ThermalPrinter         bool                     `json:"thermal_printer"`
 	Language               string                   `json:"language"`
 	Chartosimo             bool                     `json:"chartosimo"`
+	POSTerminals           []POSTerminal            `json:"pos_terminals"`
+}
+
+type POSTerminal struct {
+	Label    string `json:"label"`
+	Value    string `json:"value"`
+	Selected bool   `json:"selected"`
 }
 
 type VivaWalletAuth struct {
