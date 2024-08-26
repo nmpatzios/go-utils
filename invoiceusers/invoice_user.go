@@ -169,6 +169,7 @@ type POSTerminal struct {
 type VivaWalletAuth struct {
 	ClientId     string `json:"client_id"`
 	ClientSecret string `json:"client_secret"`
+	SourceCode   string `json:"source_code"`
 }
 
 type SimplyProvider struct {
