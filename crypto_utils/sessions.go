@@ -9,12 +9,13 @@ import (
 	"io"
 
 	"github.com/dgrijalva/jwt-go"
+
 	"github.com/nmpatzios/go-utils/logger"
 )
 
 var (
 	KeyGenerator = []byte("NcRfUjXn2r5u8x/A")
-	mySigningKey = []byte("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJjbGllbnQiOiJKaXNjIiwiZXhwIjowfQ.CYwly1IRD_F9ptpSx8OJQVL2jgwMpkxlR5HheQLF9us")
+	MySigningKey = []byte("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJjbGllbnQiOiJKaXNjIiwiZXhwIjowfQ.CYwly1IRD_F9ptpSx8OJQVL2jgwMpkxlR5HheQLF9us")
 )
 
 func GenerateJWT(username, userId string) (string, error) {
@@ -26,7 +27,7 @@ func GenerateJWT(username, userId string) (string, error) {
 	claims["client"] = username
 	claims["exp"] = 0
 	claims["user_id"] = userId
-	tokenString, err := token.SignedString(mySigningKey)
+	tokenString, err := token.SignedString(MySigningKey)
 
 	if err != nil {
 
