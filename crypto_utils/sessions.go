@@ -1,17 +1,23 @@
 package crypto_utils
 
 import (
+	"context"
 	"crypto/aes"
 	"crypto/cipher"
 	"crypto/rand"
 	"encoding/base64"
+	"errors"
 	"fmt"
 	"io"
+	"net/http"
 	"net/mail"
+	"strings"
 
 	"github.com/dgrijalva/jwt-go"
 
+	"github.com/nmpatzios/go-utils/http_utils"
 	"github.com/nmpatzios/go-utils/logger"
+	"github.com/nmpatzios/go-utils/resterrors"
 )
 
 var (
@@ -89,4 +95,54 @@ func DecryptPass(key []byte, cryptoText string) string {
 func ValidEmail(email string) bool {
 	_, err := mail.ParseAddress(email)
 	return err == nil
+}
+func AuthorizationMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		authorizationHeader := r.Header.Get("Authorization")
+		if authorizationHeader == "" {
+			authErr := resterrors.NewUnauthorizedError("Unauthorized")
+			http_utils.RespondWithError(w, authErr.Status(), authErr)
+			return
+		}
+
+		tokenString := strings.Split(authorizationHeader, " ")[0]
+		token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+			// Ensure the token signing method is as expected
+			if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+				return nil, errors.New("Unexpected signing method")
+			}
+
+			// Provide the key used to sign the token
+			return []byte(MySigningKey), nil
+		})
+
+		if err != nil {
+			authErr := resterrors.NewUnauthorizedError("Unauthorized")
+			http_utils.RespondWithError(w, authErr.Status(), authErr)
+			return
+		}
+
+		if !token.Valid {
+			authErr := resterrors.NewUnauthorizedError("Unauthorized")
+			http_utils.RespondWithError(w, authErr.Status(), authErr)
+			return
+		}
+
+		// Add user_id from the token to the request context for later use
+		claims, ok := token.Claims.(jwt.MapClaims)
+		if !ok {
+			authErr := resterrors.NewUnauthorizedError("Unauthorized")
+			http_utils.RespondWithError(w, authErr.Status(), authErr)
+			return
+		}
+		userID, ok := claims["user_id"].(string)
+		if !ok {
+			authErr := resterrors.NewUnauthorizedError("Unauthorized")
+			http_utils.RespondWithError(w, authErr.Status(), authErr)
+			return
+		}
+
+		ctx := context.WithValue(r.Context(), "user_id", userID)
+		next.ServeHTTP(w, r.WithContext(ctx))
+	})
 }

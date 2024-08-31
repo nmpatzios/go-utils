@@ -18,7 +18,7 @@ var (
 	log logger
 )
 
-type timologisiLogger interface {
+type monitoringLogger interface {
 	Print(v ...interface{})
 	Printf(format string, v ...interface{})
 }
@@ -28,22 +28,24 @@ type logger struct {
 }
 
 func init() {
-	logConfig := zap.Config{
-		OutputPaths: []string{getOutput()},
-		Level:       zap.NewAtomicLevelAt(getLevel()),
-		Encoding:    "json",
-		EncoderConfig: zapcore.EncoderConfig{
-			LevelKey:     "level",
-			TimeKey:      "time",
-			MessageKey:   "msg",
-			EncodeTime:   zapcore.ISO8601TimeEncoder,
-			EncodeLevel:  zapcore.LowercaseLevelEncoder,
-			EncodeCaller: zapcore.ShortCallerEncoder,
-		},
-	}
-
 	var err error
-	if log.log, err = logConfig.Build(); err != nil {
+	logConfig := zap.NewProductionConfig()
+	logConfig.OutputPaths = []string{getOutput()}
+	logConfig.Level = zap.NewAtomicLevelAt(getLevel())
+	logConfig.Encoding = "json"
+
+	encodeConfig := zap.NewProductionEncoderConfig()
+	encodeConfig.TimeKey = "timestamp"
+	encodeConfig.LevelKey = "level"
+	encodeConfig.MessageKey = "msg"
+	encodeConfig.StacktraceKey = ""
+	encodeConfig.EncodeTime = zapcore.ISO8601TimeEncoder
+	encodeConfig.EncodeLevel = zapcore.LowercaseLevelEncoder
+	encodeConfig.EncodeCaller = zapcore.ShortCallerEncoder
+
+	logConfig.EncoderConfig = encodeConfig
+
+	if log.log, err = logConfig.Build(zap.AddCallerSkip(1)); err != nil {
 		panic(err)
 	}
 }
@@ -69,7 +71,7 @@ func getOutput() string {
 	return output
 }
 
-func GetLogger() timologisiLogger {
+func GetLogger() monitoringLogger {
 	return log
 }
 

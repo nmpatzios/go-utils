@@ -62,6 +62,13 @@ func NewBadRequestError(message string) RestErr {
 		ErrError:   "bad_request",
 	}
 }
+func NewConflictError(message string) RestErr {
+	return restErr{
+		ErrMessage: message,
+		ErrStatus:  http.StatusConflict,
+		ErrError:   "conflict_request",
+	}
+}
 
 func NewNotFoundError(message string) RestErr {
 	return restErr{
