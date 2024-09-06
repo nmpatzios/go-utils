@@ -151,6 +151,7 @@ type User struct {
 	SimplyProvider         SimplyProvider           `json:"simply_provider"`
 	IlydaProvider          IlydaProvider            `json:"ilyda_provider"`
 	VivaWalletAuth         VivaWalletAuth           `json:"viva_wallet_auth"`
+	DsdcProvider           DsdcProvider             `json:"dsdc_provider"`
 	BuyerIdentifier        string                   `json:"buyer_identifier"`
 	IsSimplyProviderUser   bool                     `json:"is_simply_provider_user"`
 	IsIlydaProviderUser    bool                     `json:"is_ilyda_provider_user"`
@@ -174,6 +175,19 @@ type VivaWalletAuth struct {
 
 type SimplyProvider struct {
 	ApiKey        string    `json:"api_key"`
+	CreatedAt     time.Time `json:"created_at"`
+	ActivatedAt   time.Time `json:"activated_at"`
+	Active        bool      `json:"active"`
+	Parastatika   []string  `json:"parastatika"`
+	ExpiredAt     time.Time `json:"expired_at"`
+	ProviderFee   float64   `json:"provider_fee"`
+	EmailSent     bool      `json:"email_sent"`
+	EmailSendDate time.Time `json:"email_send_date"`
+}
+
+type DsdcProvider struct {
+	Username      string    `json:"username"`
+	Password      string    `json:"password"`
 	CreatedAt     time.Time `json:"created_at"`
 	ActivatedAt   time.Time `json:"activated_at"`
 	Active        bool      `json:"active"`
