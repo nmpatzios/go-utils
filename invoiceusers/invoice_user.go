@@ -154,6 +154,7 @@ type User struct {
 	DsdcProvider           DsdcProvider             `json:"dsdc_provider"`
 	BuyerIdentifier        string                   `json:"buyer_identifier"`
 	IsSimplyProviderUser   bool                     `json:"is_simply_provider_user"`
+	IsDsdcProviderUser     bool                     `json:"is_dsdc_provider_user"`
 	IsIlydaProviderUser    bool                     `json:"is_ilyda_provider_user"`
 	ThermalPrinter         bool                     `json:"thermal_printer"`
 	Language               string                   `json:"language"`
