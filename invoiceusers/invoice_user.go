@@ -97,6 +97,7 @@ type User struct {
 	Surname                string                   `json:"surname"`
 	Email                  string                   `json:"email"`
 	Password               string                   `json:"password"`
+	AdminPassword          string                   `json:"admin_password"`
 	Afm                    string                   `json:"afm"`
 	CompanysHouseNumber    string                   `json:"companys_house_number"`
 	UtrNumber              string                   `json:"utr_number"`
