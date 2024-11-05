@@ -161,6 +161,7 @@ type User struct {
 	Language               string                   `json:"language"`
 	Chartosimo             bool                     `json:"chartosimo"`
 	POSTerminals           []POSTerminal            `json:"pos_terminals"`
+	CanStoreInvoices       bool                     `json:"can_store_invoices"`
 }
 
 type POSTerminal struct {
