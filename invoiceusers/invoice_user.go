@@ -162,6 +162,8 @@ type User struct {
 	Chartosimo             bool                     `json:"chartosimo"`
 	POSTerminals           []POSTerminal            `json:"pos_terminals"`
 	CanStoreInvoices       bool                     `json:"can_store_invoices"`
+	ReferenceID            string                   `json:"reference_id"`   // Stores the creator's user ID
+	ReferredUsers          []string                 `json:"referred_users"` // List of user IDs referred by this user
 }
 
 type POSTerminal struct {
