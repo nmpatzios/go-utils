@@ -215,6 +215,7 @@ type IlydaProvider struct {
 	EmailSent     bool      `json:"email_sent"`
 	EmailSendDate time.Time `json:"email_send_date"`
 	IlydaFees     string    `json:"ilyda_fees"`
+	OnlyIlyda     bool      `json:"only_ilyda"`
 }
 
 type SendEmailToUsers struct {
