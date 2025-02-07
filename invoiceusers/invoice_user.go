@@ -166,6 +166,7 @@ type User struct {
 	CanStoreInvoices bool          `json:"can_store_invoices"`
 	ReferenceID      string        `json:"reference_id"`   // Stores the creator's user ID
 	ReferredUsers    []string      `json:"referred_users"` // List of user IDs referred by this user
+	IsSalesMan       bool          `json:"is_sales_man"`
 }
 
 type POSTerminal struct {
