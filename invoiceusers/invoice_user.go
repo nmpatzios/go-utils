@@ -153,6 +153,7 @@ type User struct {
 	IlydaProvider          IlydaProvider            `json:"ilyda_provider"`
 	VivaWalletAuth         VivaWalletAuth           `json:"viva_wallet_auth"`
 	DsdcProvider           DsdcProvider             `json:"dsdc_provider"`
+	EOPYSymvaseis          []EOPYSymvasi            `json:"eopy_symvaseis"`
 	BuyerIdentifier        string                   `json:"buyer_identifier"`
 	IsSimplyProviderUser   bool                     `json:"is_simply_provider_user"`
 	IsDsdcProviderUser     bool                     `json:"is_dsdc_provider_user"`
@@ -167,6 +168,14 @@ type User struct {
 	ReferenceID      string        `json:"reference_id"`   // Stores the creator's user ID
 	ReferredUsers    []string      `json:"referred_users"` // List of user IDs referred by this user
 	IsSalesMan       bool          `json:"is_sales_man"`
+}
+
+type EOPYSymvasi struct {
+	Description   string `json:"description"`
+	SimvasiNumber string `json:"simvasi_number"`
+	StartDate     string `json:"start_date"`
+	EndDate       string `json:"end_date"`
+	CreatedAt     string `json:"created_at"`
 }
 
 type POSTerminal struct {
