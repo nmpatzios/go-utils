@@ -162,12 +162,12 @@ type User struct {
 	Language               string                   `json:"language"`
 	Chartosimo             bool                     `json:"chartosimo"`
 	VatPaymentSuspension   bool                     `json:"vat_payment_suspension"`
-
-	POSTerminals     []POSTerminal `json:"pos_terminals"`
-	CanStoreInvoices bool          `json:"can_store_invoices"`
-	ReferenceID      string        `json:"reference_id"`   // Stores the creator's user ID
-	ReferredUsers    []string      `json:"referred_users"` // List of user IDs referred by this user
-	IsSalesMan       bool          `json:"is_sales_man"`
+	PelatologioClientTypes []PelatologioClientType  `json:"pelatologio_client_types"`
+	POSTerminals           []POSTerminal            `json:"pos_terminals"`
+	CanStoreInvoices       bool                     `json:"can_store_invoices"`
+	ReferenceID            string                   `json:"reference_id"`   // Stores the creator's user ID
+	ReferredUsers          []string                 `json:"referred_users"` // List of user IDs referred by this user
+	IsSalesMan             bool                     `json:"is_sales_man"`
 }
 
 type EOPYSymvasi struct {
@@ -291,6 +291,11 @@ type ForoDiamonis struct {
 type ForoDiamonisType struct {
 	Type  int64   `json:"type"`
 	Value float64 `json:"value"`
+}
+
+type PelatologioClientType struct {
+	Value string `json:"value"`
+	Label string `json:"label"`
 }
 
 type EisprakseisTelous0310 struct {
