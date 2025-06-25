@@ -349,6 +349,7 @@ func (u *User) ToPublicUser(users []User) map[string]interface{} {
 		"created_users":            allUsers,
 		"pelatologio_client_types": u.PelatologioClientTypes,
 		"taxisnet_details":         u.TaxisNetDetails,
+		"branch_stores":            u.BranchStores,
 	}
 }
 
