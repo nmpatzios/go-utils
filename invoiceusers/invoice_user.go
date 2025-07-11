@@ -350,6 +350,11 @@ func (u *User) ToPublicUser(users []User) map[string]interface{} {
 		"pelatologio_client_types": u.PelatologioClientTypes,
 		"taxisnet_details":         u.TaxisNetDetails,
 		"branch_stores":            u.BranchStores,
+		"address":                  u.Address,
+		"address_number":           u.AddressNumber,
+		"postcode":                 u.Postcode,
+		"city":                     u.City,
+		"phone_number":             u.PhoneNumber,
 	}
 }
 
