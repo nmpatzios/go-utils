@@ -168,6 +168,7 @@ type User struct {
 	ReferenceID            string                   `json:"reference_id"`   // Stores the creator's user ID
 	ReferredUsers          []string                 `json:"referred_users"` // List of user IDs referred by this user
 	IsSalesMan             bool                     `json:"is_sales_man"`
+	BratnetProvider        BratnetProvider          `json:"bratnet_provider"`
 }
 
 type EOPYSymvasi struct {
@@ -356,6 +357,17 @@ func (u *User) ToPublicUser(users []User) map[string]interface{} {
 		"city":                     u.City,
 		"phone_number":             u.PhoneNumber,
 	}
+}
+
+type BratnetProvider struct {
+	Username    string   `json:"username"`
+	Password    string   `json:"password"`
+	Parastatika []string `json:"parastatika"`
+	ProviderFee string   `json:"provider_fee"`
+	ExpiredAt   string   `json:"expired_at"`
+	Retail      bool     `json:"retail"`
+	Wholesale   bool     `json:"wholesale"`
+	B2G         bool     `json:"b2g"`
 }
 
 func (user *User) MydataRegisterAPIValidate() resterrors.RestErr {
