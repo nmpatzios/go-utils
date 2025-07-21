@@ -359,14 +359,16 @@ func (u *User) ToPublicUser(users []User) map[string]interface{} {
 }
 
 type BratnetProvider struct {
-	Username    string   `json:"username"`
-	Password    string   `json:"password"`
-	Parastatika []string `json:"parastatika"`
-	ProviderFee string   `json:"provider_fee"`
-	ExpiredAt   string   `json:"expired_at"`
-	Retail      bool     `json:"retail"`
-	Wholesale   bool     `json:"wholesale"`
-	B2G         bool     `json:"b2g"`
+	Username    string    `json:"username"`
+	Password    string    `json:"password"`
+	Parastatika []string  `json:"parastatika"`
+	ProviderFee string    `json:"provider_fee"`
+	ExpiredAt   string    `json:"expired_at"`
+	Retail      bool      `json:"retail"`
+	Wholesale   bool      `json:"wholesale"`
+	B2G         bool      `json:"b2g"`
+	CreatedAt   time.Time `json:"created_at"`
+	ActivatedAt time.Time `json:"activated_at"`
 }
 
 func (user *User) MydataRegisterAPIValidate() resterrors.RestErr {
