@@ -152,11 +152,10 @@ type User struct {
 	SimplyProvider         SimplyProvider           `json:"simply_provider"`
 	IlydaProvider          IlydaProvider            `json:"ilyda_provider"`
 	VivaWalletAuth         VivaWalletAuth           `json:"viva_wallet_auth"`
-	DsdcProvider           DsdcProvider             `json:"dsdc_provider"`
 	EOPYSymvaseis          []EOPYSymvasi            `json:"eopy_symvaseis"`
 	BuyerIdentifier        string                   `json:"buyer_identifier"`
 	IsSimplyProviderUser   bool                     `json:"is_simply_provider_user"`
-	IsDsdcProviderUser     bool                     `json:"is_dsdc_provider_user"`
+	IsBratnetProvider      bool                     `json:"is_bratnet_provider"`
 	IsIlydaProviderUser    bool                     `json:"is_ilyda_provider_user"`
 	ThermalPrinter         bool                     `json:"thermal_printer"`
 	Language               string                   `json:"language"`
