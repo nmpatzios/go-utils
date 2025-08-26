@@ -369,6 +369,8 @@ type BratnetProvider struct {
 	Retail      bool      `json:"retail"`
 	Wholesale   bool      `json:"wholesale"`
 	B2G         bool      `json:"b2g"`
+	TotalPoints int       `json:"total_points"`
+	UsedPoints  int       `json:"used_points"`
 	CreatedAt   time.Time `json:"created_at"`
 	ActivatedAt time.Time `json:"activated_at"`
 }
