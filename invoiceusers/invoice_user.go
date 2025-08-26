@@ -213,6 +213,8 @@ type DsdcProvider struct {
 	ProviderFee   float64   `json:"provider_fee"`
 	EmailSent     bool      `json:"email_sent"`
 	EmailSendDate time.Time `json:"email_send_date"`
+	TotalPoints   int       `json:"total_points"`
+	UsedPoints    int       `json:"used_points"`
 }
 
 type IlydaProvider struct {
