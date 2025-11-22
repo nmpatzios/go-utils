@@ -153,6 +153,7 @@ type User struct {
 	IlydaProvider          IlydaProvider            `json:"ilyda_provider"`
 	VivaWalletAuth         VivaWalletAuth           `json:"viva_wallet_auth"`
 	EPayAuth               EPayAuth                 `json:"epay_auth"`
+	EpayPosTerminals       []EPayPosTerminals       `json:"epay_pos_terminals"`
 	EOPYSymvaseis          []EOPYSymvasi            `json:"eopy_symvaseis"`
 	BuyerIdentifier        string                   `json:"buyer_identifier"`
 	IsSimplyProviderUser   bool                     `json:"is_simply_provider_user"`
@@ -196,6 +197,11 @@ type EPayAuth struct {
 	Password string `json:"password"`
 	ApiHost  string `json:"apiHost"`
 	ApiKey   string `json:"apiKey"`
+}
+type EPayPosTerminals struct {
+	Label    string `json:"label"`
+	Value    string `json:"value"`
+	Selected bool   `json:"selected"`
 }
 
 type SimplyProvider struct {
