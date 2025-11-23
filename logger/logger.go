@@ -10,8 +10,9 @@ import (
 )
 
 const (
-	envLogLevel  = "LOG_LEVEL"
-	envLogOutput = "LOG_OUTPUT"
+	envLogLevel    = "LOG_LEVEL"
+	envLogOutput   = "LOG_OUTPUT"
+	envServiceName = "SERVICE_NAME"
 )
 
 var (
@@ -45,7 +46,10 @@ func init() {
 
 	logConfig.EncoderConfig = encodeConfig
 
-	if log.log, err = logConfig.Build(zap.AddCallerSkip(1)); err != nil {
+	if log.log, err = logConfig.Build(
+		zap.AddCallerSkip(1),
+		zap.Fields(zap.String("service", getServiceName())),
+	); err != nil {
 		panic(err)
 	}
 }
@@ -69,6 +73,14 @@ func getOutput() string {
 		return "stdout"
 	}
 	return output
+}
+
+func getServiceName() string {
+	serviceName := strings.TrimSpace(os.Getenv(envServiceName))
+	if serviceName == "" {
+		return "unknown"
+	}
+	return serviceName
 }
 
 func GetLogger() monitoringLogger {
