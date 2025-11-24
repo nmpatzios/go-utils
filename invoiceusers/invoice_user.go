@@ -193,10 +193,11 @@ type VivaWalletAuth struct {
 }
 
 type EPayAuth struct {
-	Username string `json:"username"`
-	Password string `json:"password"`
-	ApiHost  string `json:"apiHost"`
-	ApiKey   string `json:"apiKey"`
+	Username       string `json:"username"`
+	Password       string `json:"password"`
+	ApiHost        string `json:"apiHost"`
+	ApiKey         string `json:"apiKey"`
+	TerminalLinked string `json:"terminalLinked"`
 }
 type EPayPosTerminals struct {
 	Label    string `json:"label"`
