@@ -197,7 +197,7 @@ type EPayAuth struct {
 	Password       string `json:"password"`
 	ApiHost        string `json:"apiHost"`
 	ApiKey         string `json:"apiKey"`
-	TerminalLinked string `json:"terminalLinked"`
+	TerminalLinked string `json:"terminal_linked"`
 }
 type EPayPosTerminals struct {
 	Label    string `json:"label"`
