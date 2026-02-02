@@ -170,6 +170,7 @@ type User struct {
 	ReferredUsers          []string                 `json:"referred_users"` // List of user IDs referred by this user
 	IsSalesMan             bool                     `json:"is_sales_man"`
 	BratnetProvider        BratnetProvider          `json:"bratnet_provider"`
+	VanTameiakiVehicles    []VanTameiakiVehicle     `json:"van_tameiaki_vehicles"`
 }
 
 type EOPYSymvasi struct {
@@ -313,6 +314,13 @@ type ForoDiamonisType struct {
 type PelatologioClientType struct {
 	Value string `json:"value"`
 	Label string `json:"label"`
+}
+
+type VanTameiakiVehicle struct {
+	ID          string `json:"id"`
+	Plate       string `json:"plate"`
+	Description string `json:"description"`
+	IsDefault   bool   `json:"isDefault"`
 }
 
 type EisprakseisTelous0310 struct {
