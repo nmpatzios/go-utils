@@ -171,6 +171,7 @@ type User struct {
 	IsSalesMan             bool                     `json:"is_sales_man"`
 	BratnetProvider        BratnetProvider          `json:"bratnet_provider"`
 	VanTameiakiVehicles    []VanTameiakiVehicle     `json:"van_tameiaki_vehicles"`
+	RestaurantUserPassword string                   `json:"restaurant_user_password"`
 }
 
 type EOPYSymvasi struct {
